@@ -35,9 +35,9 @@ public class PlayerController : MonoBehaviour
     }
     public void OnJump(InputAction.CallbackContext context)
     {
-        //InputValue input = context.;
+        InputAction input = context.action;
         Debug.Log("started jump");
-        if (jumps > 0)
+        if (input.IsPressed() && jumps > 0)
         {
             Jumping = true;
             jumps--;
