@@ -14,19 +14,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector3 move;
     //jump
     [SerializeField] Vector3 PlayerFall = new Vector3 (0,0,0);
-    public int jumps = 1;
-    public int maxJumps;
+    public int airJumps = 1;
+    public int maxAirJumps;
     private int baseMaxJumps;
     public int JumpHighet = 7;
-    [SerializeField] private bool Jumping = false;
+    private bool Jumping = false;
     [SerializeField]private bool isGrounded = true;
     
     private bool doNothingOnStart = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        maxJumps = jumps;
-        baseMaxJumps = jumps;
+        maxAirJumps = airJumps;
+        baseMaxJumps = airJumps;
         baseSpeed = speed;
         col = this.GetComponent<Collider>();
         rb = this.GetComponent<Rigidbody>();
@@ -37,10 +37,19 @@ public class PlayerController : MonoBehaviour
     {
         InputAction input = context.action;
         Debug.Log("started jump");
-        if (input.IsPressed() && jumps > 0)
+        if (input.IsPressed())
         {
-            Jumping = true;
-            jumps--;
+            if (isGrounded)
+            {
+                Jumping = true;
+            }
+            else if (airJumps > 0)
+            {
+                Jumping = true;
+                airJumps--;
+            }
+                
+            
         }
         
 
@@ -59,10 +68,13 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
+        
         isGrounded = cheakIfGrounded();
         if (isGrounded)
         {
-            jumps = maxJumps;
+            airJumps = maxAirJumps;
+            
+            
         }
         if (PlayerFall.y > 0)
         {
@@ -71,9 +83,13 @@ public class PlayerController : MonoBehaviour
         if (Jumping)
         {
             PlayerFall.y = JumpHighet;
+            
+            
             Debug.Log("Jumped");
             Jumping = false;
         }
+        
+        
         move = new Vector3(MoveDirection.x, PlayerFall.y, MoveDirection.y);
         if (doNothingOnStart)
         {
