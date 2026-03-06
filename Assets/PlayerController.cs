@@ -8,45 +8,48 @@ public class PlayerController : MonoBehaviour
     private Collider col;
     //movement
 
-    [SerializeField] private Vector3 MoveDirection;
+    [SerializeField] private Vector2 MoveDirection;
     public int speed = 5;
+    private int baseSpeed;
+    [SerializeField] private Vector3 move;
     //jump
-    Vector3 PlayerFall = new Vector3 (0,0,0);
-    public int Gravity = 5;
-    public int Jumphighet = 7;
+    [SerializeField] Vector3 PlayerFall = new Vector3 (0,0,0);
+    public int jumps = 1;
+    public int maxJumps;
+    private int baseMaxJumps;
+    public int JumpHighet = 7;
     [SerializeField] private bool Jumping = false;
     [SerializeField]private bool isGrounded = true;
-
+    
+    private bool doNothingOnStart = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        maxJumps = jumps;
+        baseMaxJumps = jumps;
+        baseSpeed = speed;
         col = this.GetComponent<Collider>();
         rb = this.GetComponent<Rigidbody>();
-        if(Gravity > 0)
-        {
-            Gravity *= -1;
-        }
+        
         MoveDirection = rb.position;
     }
-    public void OnJump(InputAction.CallbackContext Context)
+    public void OnJump(InputAction.CallbackContext context)
     {
-        if (Context.started)
+        //InputValue input = context.;
+        Debug.Log("started jump");
+        if (jumps > 0)
         {
-            Debug.Log("Jumped");
             Jumping = true;
-            
+            jumps--;
         }
-        PlayerFall.y = Jumphighet * -Gravity;
-        if (Context.canceled)
-        {
-            Jumping = false;
-        }
+        
+
+        
     }
     public void OnMove(InputAction.CallbackContext Context)
     {
         Debug.Log("moving");
-        Vector2 direction2d = Context.ReadValue<Vector2>();
-        MoveDirection = new Vector3(direction2d.x, PlayerFall.y, direction2d.y);
+        MoveDirection = Context.ReadValue<Vector2>();
     }
     public bool cheakIfGrounded()
     {
@@ -56,14 +59,31 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        isGrounded = cheakIFGrounded();
-        
-        if (isGrounded && !Jumping)
+        isGrounded = cheakIfGrounded();
+        if (isGrounded)
         {
-            Debug.Log("isGround");
-            PlayerFall.y = 0;
+            jumps = maxJumps;
         }
-        PlayerFall.y += Gravity * Time.deltaTime;
-        rb.MovePosition(rb.position + MoveDirection * speed * Time.deltaTime);
+        if (PlayerFall.y > 0)
+        {
+            PlayerFall += Physics.gravity * Time.deltaTime;
+        }
+        if (Jumping)
+        {
+            PlayerFall.y = JumpHighet;
+            Debug.Log("Jumped");
+            Jumping = false;
+        }
+        move = new Vector3(MoveDirection.x, PlayerFall.y, MoveDirection.y);
+        if (doNothingOnStart)
+        {
+            MoveDirection.y = 0;
+            move.z = 0;
+            doNothingOnStart = false;
+        }
+        rb.MovePosition(rb.position + move*speed*Time.deltaTime);
+        
+        
+        
     }
 }
