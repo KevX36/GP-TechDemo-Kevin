@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     //jump
     [SerializeField] Vector3 PlayerFall = new Vector3 (0,0,0);
     public int airJumps = 1;
-    public int maxAirJumps;
+    public int maxAirJumps = 1;
     private int baseMaxJumps;
     public int JumpHighet = 7;
     private bool Jumping = false;
@@ -25,8 +25,8 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        maxAirJumps = airJumps;
-        baseMaxJumps = airJumps;
+        airJumps = maxAirJumps;
+        baseMaxJumps = maxAirJumps;
         baseSpeed = speed;
         col = this.GetComponent<Collider>();
         rb = this.GetComponent<Rigidbody>();
