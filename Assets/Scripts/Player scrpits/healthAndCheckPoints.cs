@@ -14,8 +14,11 @@ public class healthAndCheckPoints : MonoBehaviour
     {
         if (other.gameObject.CompareTag("CheckPoint"))
         {
-            Debug.Log("checkPointSaved");
-            checkPoint = other.gameObject;
+            if(checkPoint != other.gameObject)
+            {
+                Debug.Log("checkPointSaved");
+                checkPoint = other.gameObject;
+            }
         }
         if (other.gameObject.CompareTag("KillZone"))
         {
