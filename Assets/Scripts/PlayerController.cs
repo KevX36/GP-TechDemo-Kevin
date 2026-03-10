@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+
+
     //player parts
     private Rigidbody rb;
     private Collider col;
@@ -97,6 +99,11 @@ public class PlayerController : MonoBehaviour
             move.z = 0;
             doNothingOnStart = false;
         }
+
+        move = Quaternion.Euler(0,transform.eulerAngles.y,0) * move;
+
+
+
         rb.MovePosition(rb.position + move*speed*Time.deltaTime);
         
         
