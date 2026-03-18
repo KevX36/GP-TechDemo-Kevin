@@ -1,12 +1,12 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SurviceHub : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] public UIManager uIManager;
+    [SerializeField] public LevelManager levelManager;
+    [SerializeField] public GameStateManager stateManager;
     [SerializeField] public GameObject player;
-
-
-
-
+    
 
 }
