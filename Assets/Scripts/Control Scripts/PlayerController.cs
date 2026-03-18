@@ -297,7 +297,6 @@ public class PlayerController : MonoBehaviour
             {
                 MoveDirection.y = 0;
                 move.z = 0;
-                MoveDirection.x = 0;
                 doNothingOnStart = false;
             }
             rb.MovePosition(rb.position + move * speed * Time.deltaTime);
