@@ -359,6 +359,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Suvice hub
       objectReference: {fileID: 0}
+    - target: {fileID: 8805992768973357982, guid: f2269f68adc877b40a9dab4ff4aa151e, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -489,6 +493,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpeedBox
       objectReference: {fileID: 0}
+    - target: {fileID: 4108018771041081170, guid: 717b4fa49d8b321489ac00357ea3dc0a, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: fa6ba2bf9667b834db8e9d503188f1ff, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -659,6 +667,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8474318891055355228, guid: b74e8e362353ebc459acc1aa52f29911, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4b62acd67e00b9546a5094c7ba914a28, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
