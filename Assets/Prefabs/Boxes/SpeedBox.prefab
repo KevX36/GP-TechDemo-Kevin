@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1038254575487954409}
   - component: {fileID: 4262422329287494263}
   - component: {fileID: 4144863973227887726}
-  - component: {fileID: 4359064579154607017}
   m_Layer: 0
   m_Name: SpeedBox
   m_TagString: PickUp
@@ -152,17 +151,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4359064579154607017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3870402770352950926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f96f00f3afaab964ab59f73cf77d69b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hub: {fileID: 0}
-  player: {fileID: 0}

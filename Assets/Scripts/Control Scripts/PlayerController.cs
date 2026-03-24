@@ -267,13 +267,14 @@ public class PlayerController : MonoBehaviour
 
 
             }
-            if (PlayerFall.y > 0)
+            if (PlayerFall.y > 0 && !Jumping)
             {
-                PlayerFall += Physics.gravity * Time.deltaTime;
+                PlayerFall.y += Physics.gravity.y * Time.deltaTime;
             }
             if (Jumping)
             {
-                PlayerFall.y = JumpHighet;
+
+                PlayerFall.y = JumpHighet + (-Physics.gravity.y);
                 if (!isGrounded)
                 {
                     airJumps--;
@@ -295,8 +296,10 @@ public class PlayerController : MonoBehaviour
             move = Quaternion.Euler(0, transform.eulerAngles.y, 0) * move;
             if (doNothingOnStart)
             {
+                Debug.Log("stopped movement");
                 MoveDirection.y = 0;
                 move.z = 0;
+                MoveDirection.x = 0;
                 doNothingOnStart = false;
             }
             rb.MovePosition(rb.position + move * speed * Time.deltaTime);
