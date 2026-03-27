@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
+
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private SurviceHub surviceHub;
@@ -15,7 +16,8 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         player = surviceHub.player;
-        
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
     public void ShowMenu()
     {
@@ -27,14 +29,17 @@ public class UIManager : MonoBehaviour
         CloseAllUI();
         Time.timeScale = 1f;
         player.SetActive(true);
-        
+        Cursor.visible = false;
         gameplayUI.SetActive(true);
+        Cursor.lockState = CursorLockMode.Locked;
     }
     public void ShowPauseUI()
     {
         CloseAllUI();
         Time.timeScale = 0.0f;
         pauseUI.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
     
 

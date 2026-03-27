@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
+
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private SurviceHub hub;
@@ -29,6 +30,8 @@ public class PlayerController : MonoBehaviour
     public float baseJumpHighet;
     private bool Jumping = false;
     [SerializeField] private bool isGrounded = true;
+    
+    
     // box
     public GameObject GrabSpot;
     public int TossPower = 5;
@@ -55,6 +58,8 @@ public class PlayerController : MonoBehaviour
 
     //makes sure no movement happens at start without imput
     private bool doNothingOnStart = true;
+
+    
     IEnumerator JumpBoost()
     {
 
@@ -129,6 +134,9 @@ public class PlayerController : MonoBehaviour
     
     void Awake()
     {
+
+        
+
         stateManager = hub.stateManager;
         airJumps = maxAirJumps;
         baseMaxJumps = maxAirJumps;
@@ -264,17 +272,19 @@ public class PlayerController : MonoBehaviour
             if (isGrounded)
             {
                 airJumps = maxAirJumps;
-
+                
 
             }
             if (PlayerFall.y > 0 && !Jumping)
             {
-                PlayerFall.y += Physics.gravity.y * Time.deltaTime;
+
+                PlayerFall.y = Physics.gravity.y* Time.deltaTime;
+                
             }
             if (Jumping)
             {
-
-                PlayerFall.y = JumpHighet + (-Physics.gravity.y);
+                
+                PlayerFall.y = JumpHighet;
                 if (!isGrounded)
                 {
                     airJumps--;
@@ -290,7 +300,7 @@ public class PlayerController : MonoBehaviour
                 boxGO.transform.position = GrabSpot.transform.position;
                 boxGO.transform.rotation = GrabSpot.transform.rotation;
             }
-
+            
 
             move = new Vector3(MoveDirection.x, PlayerFall.y, MoveDirection.y);
             move = Quaternion.Euler(0, transform.eulerAngles.y, 0) * move;
