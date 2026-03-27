@@ -72,9 +72,13 @@ public class PlayerController : MonoBehaviour
             airJumps = maxAirJumps;
             while (speedTimer >= 0)
             {
-                extraJumpTimer -= Time.deltaTime;
-                Debug.Log(extraJumpTimer);
-                yield return null;
+                if (stateManager.currentState == GameStateManager.GameState.GamePlay)
+                {
+                    extraJumpTimer -= Time.deltaTime;
+                    Debug.Log(extraJumpTimer);
+                    yield return null;
+                }
+                
             }
             maxAirJumps = baseMaxJumps;
             ExtraJumpsActive = false;
@@ -102,9 +106,13 @@ public class PlayerController : MonoBehaviour
             JumpHighet /= 1.4f;
             while (speedTimer >= 0)
             {
-                speedTimer -= Time.deltaTime;
-                Debug.Log(speedTimer);
-                yield return null;
+                if (stateManager.currentState == GameStateManager.GameState.GamePlay)
+                {
+                    speedTimer -= Time.deltaTime;
+                    Debug.Log(speedTimer);
+                    yield return null;
+                }
+                
             }
             speed = baseSpeed;
             JumpHighet = baseJumpHighet;
@@ -117,6 +125,7 @@ public class PlayerController : MonoBehaviour
     }
     public void SetBuff(string boost)
     {
+
         Debug.Log(boost);
         if(boost == "speed")
         {
@@ -178,73 +187,85 @@ public class PlayerController : MonoBehaviour
     }
     public void GrabAndDrop()
     {
-        RaycastHit hit;
-        if (boxGO == null && Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, GrabRange))
+        if (stateManager.currentState == GameStateManager.GameState.GamePlay)
         {
-            Debug.Log("Tried To pick up box");
-            boxGO = hit.transform.gameObject;
-            if (boxGO.CompareTag("PickUp"))
+            RaycastHit hit;
+            if (boxGO == null && Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, GrabRange))
             {
-                Debug.Log("Grabed box");
-                boxRB = boxGO.GetComponent<Rigidbody>();
-                boxGO.GetComponent<BoxCollider>().enabled = false;
-                boxRB.constraints = RigidbodyConstraints.FreezeAll;
-                boxOpen = boxGO.GetComponent<IBox>();
-            }
-            else
-            {
-                Debug.Log("tried to grab something that was not a box");
-                boxGO = null;
+                Debug.Log("Tried To pick up box");
+                boxGO = hit.transform.gameObject;
+                if (boxGO.CompareTag("PickUp"))
+                {
+                    Debug.Log("Grabed box");
+                    boxRB = boxGO.GetComponent<Rigidbody>();
+                    boxGO.GetComponent<BoxCollider>().enabled = false;
+                    boxRB.constraints = RigidbodyConstraints.FreezeAll;
+                    boxOpen = boxGO.GetComponent<IBox>();
+                }
+                else
+                {
+                    Debug.Log("tried to grab something that was not a box");
+                    boxGO = null;
+
+                }
+
 
             }
-            
-            
+            else if (boxGO != null)
+            {
+                Debug.Log("toss the box");
+                boxGO.GetComponent<BoxCollider>().enabled = true;
+                boxRB.constraints = RigidbodyConstraints.None;
+                boxRB.AddForce(cam.transform.forward);
+                boxGO = null;
+                boxRB = null;
+                boxOpen = null;
+            }
         }
-        else if (boxGO != null)
-        {
-            Debug.Log("toss the box");
-            boxGO.GetComponent<BoxCollider>().enabled = true;
-            boxRB.constraints = RigidbodyConstraints.None;
-            boxRB.AddForce(cam.transform.forward);
-            boxGO = null;
-            boxRB = null;
-            boxOpen = null;
-        }
+        
 
 
 
     }
     public void Throw()
     {
-        if (boxGO != null)
+        if (stateManager.currentState == GameStateManager.GameState.GamePlay)
         {
-            Debug.Log("toss the box");
-            boxGO.GetComponent<BoxCollider>().enabled = true;
-            boxRB.constraints = RigidbodyConstraints.None;
-            boxRB.AddForce((cam.transform.forward * TossPower) + (cam.transform.up* (TossPower / 2)));
-            boxGO = null;
-            boxRB = null;
-            boxOpen = null;
+            if (boxGO != null)
+            {
+                Debug.Log("toss the box");
+                boxGO.GetComponent<BoxCollider>().enabled = true;
+                boxRB.constraints = RigidbodyConstraints.None;
+                boxRB.AddForce((cam.transform.forward * TossPower) + (cam.transform.up * (TossPower / 2)));
+                boxGO = null;
+                boxRB = null;
+                boxOpen = null;
+            }
         }
+        
     }
     public void cutBox()
     {
-        Debug.Log("tried to cut box");
-        if (boxGO != null)
+        if (stateManager.currentState == GameStateManager.GameState.GamePlay)
         {
-            Debug.Log("cut box open");
+            Debug.Log("tried to cut box");
+            if (boxGO != null)
+            {
+                Debug.Log("cut box open");
 
 
 
-            boxOpen.Open();
-            boxGO.GetComponent<BoxCollider>().enabled = true;
-            boxRB.constraints = RigidbodyConstraints.None;
-            
-            boxGO = null;
-            boxRB = null;
-            boxOpen = null;
+                boxOpen.Open();
+                boxGO.GetComponent<BoxCollider>().enabled = true;
+                boxRB.constraints = RigidbodyConstraints.None;
 
+                boxGO = null;
+                boxRB = null;
+                boxOpen = null;
+
+            }
         }
+        
         
     }
     public void OnMove(InputAction.CallbackContext Context)
@@ -278,7 +299,7 @@ public class PlayerController : MonoBehaviour
             if (PlayerFall.y > 0 && !Jumping)
             {
 
-                PlayerFall.y = Physics.gravity.y* Time.deltaTime;
+                PlayerFall.y += Physics.gravity.y* Time.deltaTime;
                 
             }
             if (Jumping)
