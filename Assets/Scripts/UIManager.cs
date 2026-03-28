@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private SurviceHub surviceHub;
     
     [SerializeField] private GameObject gameplayUI;
-    [SerializeField] public GameObject player;
+    public GameObject player;
     [SerializeField] private GameObject pauseUI;
     
 
