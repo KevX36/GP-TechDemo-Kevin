@@ -1,23 +1,21 @@
 using UnityEngine;
 
-public class SpeedBox : MonoBehaviour, IBox
+public class basicBox : MonoBehaviour,IBox
 {
     [SerializeField] private SurviceHub hub;
     [SerializeField] private PlayerController player;
     private void Start()
     {
-        
-    
+
+
 
 
         player = hub.player.GetComponent<PlayerController>();
     }
     public void Open()
     {
-        Debug.Log("Box activated");
-        player.SetBuff("speed");
+        Debug.Log("cut basic box");
 
         this.gameObject.SetActive(false);
     }
-
 }

@@ -181,6 +181,10 @@ public class PlayerController : MonoBehaviour
 
         
     }
+    public void spwanBox()
+    {
+
+    }
     public void OnPause()
     {
         stateManager.OnPause();

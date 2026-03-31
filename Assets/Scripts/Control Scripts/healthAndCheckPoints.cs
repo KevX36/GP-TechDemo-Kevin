@@ -4,7 +4,7 @@ public class healthAndCheckPoints : MonoBehaviour
 {
     public int health = 100;
     private int maxHealth = 100;
-
+    
     private void Start()
     {
         maxHealth = health;
