@@ -2824,7 +2824,7 @@ PrefabInstance:
       objectReference: {fileID: 6234824000365165292}
     - target: {fileID: 2916330537718187131, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2916330537718187131, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_ActionId
@@ -2835,12 +2835,20 @@ PrefabInstance:
       value: c5f303a0-7947-49eb-90c7-907d1c399ea4
       objectReference: {fileID: 0}
     - target: {fileID: 2916330537718187131, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionId
+      value: 614cbf65-9d2d-4879-8802-7fc8b6e8b55c
+      objectReference: {fileID: 0}
+    - target: {fileID: 2916330537718187131, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_ActionName
       value: 'PlayerControls/Throw[/Mouse/rightButton,/Keyboard/q]'
       objectReference: {fileID: 0}
     - target: {fileID: 2916330537718187131, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_ActionName
       value: 'PlayerControls/OpenBox[/Keyboard/f]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2916330537718187131, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionName
+      value: 'PlayerControls/spawn box[/Keyboard/r]'
       objectReference: {fileID: 0}
     - target: {fileID: 2916330537718187131, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.size
@@ -2851,11 +2859,19 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2916330537718187131, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2916330537718187131, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2916330537718187131, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2916330537718187131, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2916330537718187131, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
@@ -2867,11 +2883,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 586581083}
     - target: {fileID: 2916330537718187131, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 586581083}
+    - target: {fileID: 2916330537718187131, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2916330537718187131, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2916330537718187131, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2916330537718187131, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
@@ -2887,6 +2911,10 @@ PrefabInstance:
       value: cutBox
       objectReference: {fileID: 0}
     - target: {fileID: 2916330537718187131, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: spawnBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 2916330537718187131, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PlayerController, Assembly-CSharp
       objectReference: {fileID: 0}
@@ -2895,11 +2923,19 @@ PrefabInstance:
       value: PlayerController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2916330537718187131, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2916330537718187131, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
       propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2916330537718187131, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2916330537718187131, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7139672960007821504, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
