@@ -1,5 +1,6 @@
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -53,7 +54,7 @@ public class PlayerController : MonoBehaviour
     private bool ExtraJumpsActive = false;
     public float extraJumpTime = 30;
     private float extraJumpTimer;
-
+    
 
 
     //makes sure no movement happens at start without imput
@@ -181,10 +182,8 @@ public class PlayerController : MonoBehaviour
 
         
     }
-    public void spwanBox()
-    {
-
-    }
+    public GameObject basicBox;
+    
     public void OnPause()
     {
         stateManager.OnPause();
@@ -231,20 +230,42 @@ public class PlayerController : MonoBehaviour
 
 
     }
-    public void Throw()
+    public void spawnBox()
+    {
+        if (boxGO == null)
+        {
+            Debug.Log("Took a box out");
+            boxGO = Instantiate(basicBox, GrabSpot.transform.position, GrabSpot.transform.rotation);
+            boxRB = boxGO.GetComponent<Rigidbody>();
+            boxGO.GetComponent<BoxCollider>().enabled = false;
+            boxRB.constraints = RigidbodyConstraints.FreezeAll;
+            boxOpen = boxGO.GetComponent<IBox>();
+        }
+    }
+    public void Throw(InputAction.CallbackContext context)
     {
         if (stateManager.currentState == GameStateManager.GameState.GamePlay)
         {
-            if (boxGO != null)
+            
+            InputAction input = context.action;
+            Debug.Log("started jump");
+            if (input.IsPressed())
             {
-                Debug.Log("toss the box");
-                boxGO.GetComponent<BoxCollider>().enabled = true;
-                boxRB.constraints = RigidbodyConstraints.None;
-                boxRB.AddForce((cam.transform.forward * TossPower) + (cam.transform.up * (TossPower / 2)));
-                boxGO = null;
-                boxRB = null;
-                boxOpen = null;
+                
+                if (boxGO != null)
+                {
+                    Debug.Log("toss the box");
+                    boxGO.GetComponent<BoxCollider>().enabled = true;
+                    boxRB.constraints = RigidbodyConstraints.None;
+                    boxRB.AddForce((cam.transform.forward * TossPower) + (cam.transform.up * (TossPower / 2)));
+                    boxGO = null;
+                    boxRB = null;
+                    boxOpen = null;
+                    
+                }
+                
             }
+            
         }
         
     }
@@ -309,7 +330,7 @@ public class PlayerController : MonoBehaviour
             if (Jumping)
             {
                 
-                PlayerFall.y = JumpHighet;
+                PlayerFall.y = JumpHighet + (maxAirJumps - airJumps);
                 if (!isGrounded)
                 {
                     airJumps--;
