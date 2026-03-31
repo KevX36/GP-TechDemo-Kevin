@@ -2995,6 +2995,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1079902943}
     - target: {fileID: 9095939386206617586, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
+      propertyPath: basicBox
+      value: 
+      objectReference: {fileID: 4545151517445400356, guid: 71bbe3b09dcf9704ca800ff16076618c, type: 3}
+    - target: {fileID: 9095939386206617586, guid: 5f2666c0bec90424089087d27a5366e6, type: 3}
       propertyPath: GrabRange
       value: 3
       objectReference: {fileID: 0}
