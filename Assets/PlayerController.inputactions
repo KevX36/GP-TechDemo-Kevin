@@ -260,30 +260,8 @@
                 },
                 {
                     "name": "",
-                    "id": "71cc05c8-bdda-45ca-9455-8e9aa3436fe8",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pickup/drop",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "1ad5de13-44d5-449f-aa1f-d14f20d09427",
                     "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Throw",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "00d22734-9e1d-4be5-8363-e6a43450c85f",
-                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -327,7 +305,7 @@
                 {
                     "name": "",
                     "id": "7b1ebfb0-c559-4575-8c37-3d58bccba549",
-                    "path": "<Keyboard>/r",
+                    "path": "<Mouse>/middleButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
