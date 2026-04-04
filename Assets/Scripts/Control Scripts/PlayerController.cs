@@ -60,7 +60,9 @@ public class PlayerController : MonoBehaviour
     //makes sure no movement happens at start without imput
     private bool doNothingOnStart = true;
 
+
     
+
     IEnumerator JumpBoost()
     {
 
@@ -308,7 +310,13 @@ public class PlayerController : MonoBehaviour
 
         
     }
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("collectable"))
+        {
+            Destroy(other.gameObject);
+        }
+    }
     void Update()
     {
         Debug.DrawLine(cam.transform.position, (cam.transform.forward * GrabRange) + cam.transform.position, Color.red);
