@@ -9,9 +9,10 @@ public class MovingPlatform : MonoBehaviour
     private Rigidbody rb;
     private List<Vector3> points = new List<Vector3>();
     public int speed = 3;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public Collider col;
     void Start()
     {
+        col = GetComponent<Collider>();
         rb = this.gameObject.GetComponent<Rigidbody>();
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
@@ -38,7 +39,15 @@ public class MovingPlatform : MonoBehaviour
 
 
     }
-
+    private void checkOnTop(Vector3 move)
+    {
+        RaycastHit hit;
+        Physics.Raycast(transform.position, Vector3.up, out hit, col.bounds.extents.y + 0.1f);
+        if (hit.rigidbody != null)
+        {
+            hit.rigidbody.MovePosition(move);
+        }
+    }
     public bool PingPong;
     IEnumerator Move()
     {
@@ -49,8 +58,10 @@ public class MovingPlatform : MonoBehaviour
             {
                 while (Vector3.Distance(rb.position, points[i]) > 0.9f)
                 {
+                    Vector3 move = Vector3.MoveTowards(rb.position, points[i], speed * Time.fixedDeltaTime);
                     Debug.Log("Moving");
-                    rb.MovePosition(Vector3.MoveTowards(rb.position, points[i], speed * Time.fixedDeltaTime));
+                    rb.MovePosition(move);
+                    checkOnTop(move);
                     yield return null;
                 }
 
@@ -62,8 +73,10 @@ public class MovingPlatform : MonoBehaviour
                 {
                     while (Vector3.Distance(rb.position, points[i - 1]) > 0.9f)
                     {
+                        Vector3 move = Vector3.MoveTowards(rb.position, points[i - 1], speed * Time.fixedDeltaTime);
                         Debug.Log("Moving");
-                        rb.MovePosition(Vector3.MoveTowards(rb.position, points[i - 1], speed * Time.fixedDeltaTime));
+                        rb.MovePosition(move);
+                        checkOnTop(move);
                         yield return null;
                     }
 
@@ -74,8 +87,10 @@ public class MovingPlatform : MonoBehaviour
             {
                 while (Vector3.Distance(rb.position, points[0]) > 0.9f)
                 {
+                    Vector3 move = Vector3.MoveTowards(rb.position, points[0], speed * Time.fixedDeltaTime);
                     Debug.Log("Moving");
-                    rb.MovePosition(Vector3.MoveTowards(rb.position, points[0], speed * Time.fixedDeltaTime));
+                    rb.MovePosition(move);
+                    checkOnTop(move);
                     yield return null;
                 }
             }
