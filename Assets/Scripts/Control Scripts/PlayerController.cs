@@ -49,12 +49,14 @@ public class PlayerController : MonoBehaviour
     private float speedTimer;
     public int speedBoostInt = 2;
     private bool activeSpeedBoost = false;
+    public ParticleSystem speedFX;
     //jump boost
     public int jumpsToAdd = 2;
     private bool ExtraJumpsActive = false;
     public float extraJumpTime = 30;
     private float extraJumpTimer;
-    
+    public ParticleSystem jumpFX;
+
 
 
     //makes sure no movement happens at start without imput
@@ -65,7 +67,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator JumpBoost()
     {
-
+        jumpFX.Play();
         if (!ExtraJumpsActive)
         {
             ExtraJumpsActive = true;
@@ -83,6 +85,7 @@ public class PlayerController : MonoBehaviour
                 }
                 
             }
+            jumpFX.Stop();
             maxAirJumps = baseMaxJumps;
             ExtraJumpsActive = false;
             if (airJumps > maxAirJumps)
@@ -97,10 +100,11 @@ public class PlayerController : MonoBehaviour
             extraJumpTimer = extraJumpTime;
             airJumps = maxAirJumps;
         }
+        
     }
     IEnumerator SpeedBoost()
     {
-        
+        speedFX.Play();
         if (!activeSpeedBoost)
         {
             activeSpeedBoost = true;
@@ -117,6 +121,7 @@ public class PlayerController : MonoBehaviour
                 }
                 
             }
+            speedFX.Stop();
             speed = baseSpeed;
             JumpHighet = baseJumpHighet;
             activeSpeedBoost = false ;
@@ -147,6 +152,8 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
 
+        jumpFX.Stop();
+        speedFX.Stop();
         
 
         stateManager = hub.stateManager;
