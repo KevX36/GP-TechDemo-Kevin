@@ -39,19 +39,11 @@ public class MovingPlatform : MonoBehaviour
 
 
     }
-    private void checkOnTop(Vector3 move)
-    {
-        RaycastHit hit;
-        Physics.Raycast(transform.position, Vector3.up, out hit, col.bounds.extents.y + 0.1f);
-        if (hit.rigidbody != null)
-        {
-            hit.rigidbody.MovePosition(move);
-        }
-    }
+    
     public bool PingPong;
     IEnumerator Move()
     {
-
+        
         while (true)
         {
             for (int i = 1; i < points.Count; i++)
@@ -61,11 +53,15 @@ public class MovingPlatform : MonoBehaviour
                     Vector3 move = Vector3.MoveTowards(rb.position, points[i], speed * Time.fixedDeltaTime);
                     Debug.Log("Moving");
                     rb.MovePosition(move);
-                    checkOnTop(move);
+                    
+                    
+                    
                     yield return null;
+                     
                 }
-
+                
                 yield return new WaitForSecondsRealtime(1f);
+
             }
             if (PingPong)
             {
@@ -74,9 +70,11 @@ public class MovingPlatform : MonoBehaviour
                     while (Vector3.Distance(rb.position, points[i - 1]) > 0.9f)
                     {
                         Vector3 move = Vector3.MoveTowards(rb.position, points[i - 1], speed * Time.fixedDeltaTime);
-                        Debug.Log("Moving");
+                        Debug.Log("Moving in reverse");
                         rb.MovePosition(move);
-                        checkOnTop(move);
+                        
+                        
+                        
                         yield return null;
                     }
 
@@ -88,9 +86,11 @@ public class MovingPlatform : MonoBehaviour
                 while (Vector3.Distance(rb.position, points[0]) > 0.9f)
                 {
                     Vector3 move = Vector3.MoveTowards(rb.position, points[0], speed * Time.fixedDeltaTime);
-                    Debug.Log("Moving");
+                    Debug.Log("Moving back to start");
                     rb.MovePosition(move);
-                    checkOnTop(move);
+                    
+                    
+                    
                     yield return null;
                 }
             }
@@ -104,5 +104,13 @@ public class MovingPlatform : MonoBehaviour
 
 
 
+    }
+
+    private void OnCollisionStay(Collision other)
+    {
+        if (other.rigidbody != null)
+        {
+            other.rigidbody.linearVelocity = rb.linearVelocity;
+        }
     }
 }
